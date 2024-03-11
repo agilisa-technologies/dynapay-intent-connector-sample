@@ -46,9 +46,7 @@ To call the intent send the TransactionRequest
             }
             startActivityForResult(i,1)
         }
-
-
-    
+   
 ```
 
 
