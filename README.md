@@ -1,7 +1,5 @@
 # Dynapay Android Intent connector Sample
 
-Sample to interconnect PAX applications to Dynapay 
-
 This sample application demostrate how to connect to Dynapay Pax application via Intent sending the same Transaction request used for remote control integration (POS).
 
 This allows Dynapay to take care of the interaction process with BroadPOS and integration with reporting environments and other customer channels (ecommerce, payment link, REST API, Virtual Terminal, Recurrences)
@@ -10,18 +8,18 @@ This allows Dynapay to take care of the interaction process with BroadPOS and in
 
 ![Payment selection!](/BroadPOS.png "Payment selection")
 
-## How to use 
+## How to use  
 
 Initialize the package name to Dynapay app
 
-```
+``` kotlin
     const val DYNAPAY_PACKAGE="com.agilisa.posvisanet"
     const val DYNAPAY_INTENT_RECEIVER="com.agilisa.posvisanet.ExternalPaymentIntent"
 ```
 
 Sample transaction request:
 
-```
+``` kotlin
     val transaction = TransactionRequest(
         TransactionId = UUID.randomUUID().toString(),
         Invoice = "12344554",
@@ -38,9 +36,9 @@ Sample transaction request:
 
 ```
 
-To call the intent send the TransactionRequest 
+To call the intent send the TransactionRequest  
 
-```
+``` kotlin
     startTransaction(TransactionType.SALE, transaction)
     
     private fun startTransaction(action: TransactionType, transaction:Any){
@@ -54,7 +52,6 @@ To call the intent send the TransactionRequest
    
 ```
 
-## POS integration documentation: 
+## POS integration documentation  
 
-* https://agilisa.atlassian.net/wiki/x/EIBQAg
-
+* <https://agilisa.atlassian.net/wiki/x/EIBQAg>
