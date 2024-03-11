@@ -1,2 +1,2 @@
-# dynapay-intent-connector-sample
-sample to interconnect PAX applications to Dynapay 
+# Dynapay-intent-connector-sample
+Sample to interconnect PAX applications to Dynapay 
