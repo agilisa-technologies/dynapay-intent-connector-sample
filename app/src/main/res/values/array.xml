@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transactions">
+        <item>SALE</item>
+        <item>AUTH</item>
+        <item>CAPTURE</item>
+        <item>REFUND</item>
+        <item>VOID</item>
+    </string-array>
+</resources>

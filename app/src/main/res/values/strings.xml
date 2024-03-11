@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DynapayCallerExample</string>
+    <string name="transactionid">TransactionId</string>
+    <string name="start_transaction">Start Transaction</string>
+    <string name="response_transactionid">Response TransactionId</string>
+    <string name="mandatory">mandatory</string>
+</resources>
