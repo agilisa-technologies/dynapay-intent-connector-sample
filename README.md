@@ -1,9 +1,11 @@
-# Dynapay-intent-connector-sample
+# Dynapay Android Intent connector Sample
 
 Sample to interconnect PAX applications to Dynapay 
 
 This sample application demostrate how to connect to Dynapay Pax application via Intent sending the same Transaction request used for remote control integration (POS)
 This allows Dynapay to take care of the interaction process with BroadPOS and integration with reporting environments and other customer channels (ecommerce, payment link, REST API, Virtual Terminal, Recurrences)
+
+## How to use 
 
 Initialize the package name to Dynapay app
 
@@ -47,7 +49,7 @@ To call the intent send the TransactionRequest
    
 ```
 
-POS integration documentation: 
+## POS integration documentation: 
 
 * https://agilisa.atlassian.net/wiki/x/EIBQAg
 
