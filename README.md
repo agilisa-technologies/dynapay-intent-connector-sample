@@ -6,6 +6,10 @@ This sample application demostrate how to connect to Dynapay Pax application via
 
 This allows Dynapay to take care of the interaction process with BroadPOS and integration with reporting environments and other customer channels (ecommerce, payment link, REST API, Virtual Terminal, Recurrences)
 
+![Payment selection!](/Seleccion_400.png "Payment selection")
+
+![Payment selection!](/BroadPOS.png "Payment selection")
+
 ## How to use 
 
 Initialize the package name to Dynapay app
