@@ -1,13 +1,13 @@
 package com.far.dynapaycallerexample.model
 
-import java.util.Date
-
 enum class TransactionType(val transaction:String) {
     SALE("TRANSACTION.SALE"),
     AUTH("TRANSACTION.AUTH"),
     CAPTURE("TRANSACTION.CAPTURE"),
     REFUND("TRANSACTION.REFUND"),
-    VOID("TRANSACTION.VOID")
+    VOID("TRANSACTION.VOID"),
+    BATCH("TRANSACTION.BATCH"),
+    PRINT("TRANSACTION.PRINT")
 }
 
 data class TransactionRequest (
@@ -38,5 +38,13 @@ data class VoidRequest(
 data class TaxData(
     var Name: String? = null,
     var Amount: Double = 0.0
+)
+
+data class CloseBatchRequest(
+    var AutoPrint: Boolean = true
+)
+
+data class PrintRequest(
+    var TransactionId: String? = null
 )
 

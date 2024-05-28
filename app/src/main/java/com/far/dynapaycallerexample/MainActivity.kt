@@ -36,13 +36,26 @@ class MainActivity : AppCompatActivity() {
             }else if(binding.spnTransaction.selectedItem as String == Constants.AUTHORIZATION){
                 startTransaction(TransactionType.AUTH,TransactionUtil.generateAuth())
             }else if(binding.spnTransaction.selectedItem as String == Constants.CAPTURE){
-                if(validateTransactionId())
-                    startTransaction(TransactionType.CAPTURE,TransactionUtil.generateCapture(binding.etTransactionId.text.toString()))
+                if(validateTransactionId()) {
+                    startTransaction(
+                        TransactionType.CAPTURE,
+                        TransactionUtil.generateCapture(binding.etTransactionId.text.toString())
+                    )
+                }
             }else if(binding.spnTransaction.selectedItem as String == Constants.REFUND){
                 startTransaction(TransactionType.REFUND,TransactionUtil.generateRefund())
             }else if(binding.spnTransaction.selectedItem as String == Constants.VOID){
                 if(validateTransactionId())
                     startTransaction(TransactionType.VOID,TransactionUtil.generateVoid(binding.etTransactionId.text.toString()))
+            }else if(binding.spnTransaction.selectedItem as String == Constants.BATCH){
+                startTransaction(TransactionType.BATCH,TransactionUtil.generateBatchClose())
+            }else if(binding.spnTransaction.selectedItem as String == Constants.PRINT){
+                if(validateTransactionId()) {
+                    startTransaction(
+                        TransactionType.PRINT,
+                        TransactionUtil.generatePrint(binding.etTransactionId.text.toString())
+                    )
+                }
             }
         }
         val trx = resources.getStringArray(R.array.transactions).toMutableList()
@@ -55,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedItem = binding.spnTransaction.selectedItem as String
-                val enableTransactionId = selectedItem == Constants.VOID || selectedItem == Constants.CAPTURE
+                val enableTransactionId = selectedItem in listOf(Constants.VOID,Constants.CAPTURE, Constants.PRINT)
                 binding.etTransactionId.isEnabled = enableTransactionId
                 binding.tilTransactionId.isEnabled = enableTransactionId
                 if(!enableTransactionId)
@@ -90,16 +103,16 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 1 &&  resultCode == Activity.RESULT_OK){
-            val result =  data!!.getStringExtra(Constants.EXTRA_DATA)
-            val jsonObject = JSONObject(result)
-            val transactionId= jsonObject.getString("TransactionId")
+            val result =  data?.getStringExtra(Constants.EXTRA_DATA)
+            val jsonObject = if(result != null) JSONObject(result) else null
+            val transactionId= if(jsonObject?.has("TransactionId") == true) jsonObject.getString("TransactionId") else ""
 
             binding.tvResponse.text = result
             binding.etResponseTransactionId.setText(transactionId)
         }
     }
 
-    fun toJson(transaction: Any):String{
+    fun toJson(transaction: Any):String {
         val gson = Gson()
         return gson.toJson(transaction)
     }
@@ -111,10 +124,10 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,"Text copied to clipboard", Toast.LENGTH_SHORT).show()
     }
 
-    private fun validateTransactionId():Boolean{
+    private fun validateTransactionId():Boolean {
         if(binding.etTransactionId.text.isNullOrBlank()){
             binding.tilTransactionId.error = getString(R.string.mandatory)
-            return true
+            return false
         }
         return true
     }

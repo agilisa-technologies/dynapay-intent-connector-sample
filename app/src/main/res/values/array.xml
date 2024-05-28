@@ -6,5 +6,7 @@
         <item>CAPTURE</item>
         <item>REFUND</item>
         <item>VOID</item>
+        <item>BATCH</item>
+        <item>PRINT</item>
     </string-array>
 </resources>

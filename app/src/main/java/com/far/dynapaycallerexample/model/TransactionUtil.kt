@@ -63,5 +63,10 @@ object TransactionUtil {
     fun generateVoid(transactionId: String)= VoidRequest(
         TransactionId = transactionId
     )
+    fun generateBatchClose() = CloseBatchRequest(AutoPrint = true)
+
+    fun generatePrint(transactionId: String)= PrintRequest(
+        TransactionId = transactionId
+    )
 
 }
